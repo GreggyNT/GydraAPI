@@ -35,4 +35,15 @@ public class PumpRepository(AppbContext context) :AbstractRepository<Pump>(conte
         }
         return list;
     }
+
+    public override async Task<PumpDto> GetPumpFull(long id)
+    {
+        PumpDto res;
+        var characteristic = _context.Characteristics.FirstOrDefault(x => x.PumpId == id);
+        res = characteristic.Adapt<PumpDto>();
+        var main = await _context.Pumps.FirstOrDefaultAsync(x=>x.Id == id);
+        res.Name = main.Name;
+        res.Description = main.Description;
+        return res;
+    }
 }

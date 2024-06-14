@@ -39,4 +39,6 @@ public abstract class AbstractRepository<T>(AppbContext context) where T : class
     public abstract List<PumpDto> GetAllPumpsFull();
     
     public abstract List<PumpSlimDto> GetAllPumpsSlim();
+    
+    public abstract Task<PumpDto> GetPumpFull(long id);
 }

@@ -9,7 +9,7 @@ namespace GydraAPI.Entities;
 public partial class Pump
 {
     
-    public Pump(){}
+    public Pump(){}                                                                 
     [Key]
     [Column("id")]
     public long Id { get; set; }

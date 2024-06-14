@@ -1,5 +1,5 @@
 using GydraAPI.Services;
-
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GydraAPI.Controllers;
@@ -19,7 +19,7 @@ public class AbstractController<T>(AbstractRepository<T> repository) : Controlle
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<T?>> Get(long id)
+    public virtual async Task<ActionResult<T?>> Get(long id)
     {
         var res = await repository.GetAsync(id);
         

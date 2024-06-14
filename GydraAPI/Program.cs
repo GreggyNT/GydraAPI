@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Caching.Distributed;
 using GydraAPI.Context;
 using GydraAPI.Dtos;
 using GydraAPI.Entities;
@@ -14,6 +15,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppbContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("PgDbConnection"));
+});
+builder.Services.AddStackExchangeRedisCache(opt =>
+{
+    opt.Configuration = "localhost";
+    opt.InstanceName = "local";
 });
 builder.Services.AddTransient<AbstractRepository<Pump>,PumpRepository>();
 var app = builder.Build();
