@@ -1,0 +1,16 @@
+﻿services:
+  gydraapi:
+    image: gydra:latest 
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports: 
+      - "5083:8080"
+  postgres:  
+    image: postgres:alpine3.19
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+  
+    
